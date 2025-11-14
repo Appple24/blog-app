@@ -20,17 +20,20 @@ public class GlobalExceptionHandler {
       ApiResponse res=new ApiResponse(message,false);
       return new ResponseEntity<ApiResponse>(res, HttpStatus.NOT_FOUND);
     }
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String,String>> handleMethodArgumentNotValidException(MethodArgumentNotValidException me)
-    {
-        Map<String,String> res=new HashMap<>();
-        me.getBindingResult().getAllErrors().forEach((error)->{
-            String fieldName=((FieldError)error).getField();
-            String message= error.getDefaultMessage();
-            res.put(fieldName,message);
 
-        });
-        return new ResponseEntity<Map<String,String>>(res,HttpStatus.BAD_REQUEST);
-    }
+
+    //generic exception handler
+    //@ExceptionHandler(MethodArgumentNotValidException.class)
+//    public ResponseEntity<Map<String,String>> handleMethodArgumentNotValidException(MethodArgumentNotValidException me)
+//    {
+//        Map<String,String> res=new HashMap<>();
+//        me.getBindingResult().getAllErrors().forEach((error)->{
+//            String fieldName=((FieldError)error).getField();
+//            String message= error.getDefaultMessage();
+//            res.put(fieldName,message);
+//
+//        });
+//        return new ResponseEntity<Map<String,String>>(res,HttpStatus.BAD_REQUEST);
+//    }
 
 }
